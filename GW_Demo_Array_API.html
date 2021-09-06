@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array API Prototype Demo &#8212; Array API Demo</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Array Libraries Interoperability" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/data_apis_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Array API Demo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Array Libraries Interoperability
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Array API  Prototype Demo
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/GW_Demo_Array_API.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/anirudhdagar/array-api-demo"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/anirudhdagar/array-api-demo/issues/new?title=Issue%20on%20page%20%2FGW_Demo_Array_API.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/anirudhdagar/array-api-demo/master?urlpath=tree/docs/GW_Demo_Array_API.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-guide-to-ligo-virgo-detector-noise">
+   A guide to LIGO-Virgo detector noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pytorch-tensors-with-scipy">
+     PyTorch Tensors with SciPy?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#download-data-files">
+   Download data files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#array-api-demo-background">
+   Array-API Demo Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#array-namespace">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __array_namespace__
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-namespace">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       get_namespace
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-the-noise-power-spectral-density-psd">
+   Calculate the noise power spectral density (PSD)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#whiten-and-bandpass-functions">
+   Whiten and Bandpass Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-strain-data-that-has-been-windowed-bandpassed-and-whitened">
+   Plot strain data that has been windowed, bandpassed, and whitened
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#method-for-getting-whitened-banspassed-event-data">
+   Method for getting whitened/banspassed event data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-array-api">
+   Summary Array API
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="array-api-prototype-demo">
+<h1>Array API  Prototype Demo<a class="headerlink" href="#array-api-prototype-demo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-guide-to-ligo-virgo-detector-noise">
+<h2>A guide to LIGO-Virgo detector noise<a class="headerlink" href="#a-guide-to-ligo-virgo-detector-noise" title="Permalink to this headline">¶</a></h2>
+<p>This notebook is modified and built on top of the work by GWOSC (<a class="reference external" href="https://github.com/losc-tutorial/Data_Guide">GitHub</a>). We would like to credit the authors of the paper and <a class="reference external" href="https://www.gw-openscience.org/tutorials/">Gravitational Wave Open Science Center Tutorials</a> for their work and open sourcing the code for generating the analysis. This notebook is intended as an educational demonstration to reproduce some of the figures in the paper <a class="reference external" href="https://inspirehep.net/record/1751757">“A guide to LIGO-Virgo detector noise and extraction of transient gravitational-wave signals”</a>.</p>
+<div class="section" id="pytorch-tensors-with-scipy">
+<h3>PyTorch Tensors with SciPy?<a class="headerlink" href="#pytorch-tensors-with-scipy" title="Permalink to this headline">¶</a></h3>
+<p>We aim to showcase an interoperable array protocol with this “Guide to GW detections and noise” real world example. The goal with this tutorial examples is to show the usage of PyTorch with an already existing codebase written SciPy or any other array/tensor consuming library for that matter built around NumPy. We would like to achieve this without making a lot of amends.</p>
+<img src="https://www.fullstackpython.com/img/logos/scipy.png" alt="drawing" width="200"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png" alt="drawing" width="50"/>
+<img src="https://numpy.org/doc/stable/_static/numpylogo.svg" alt="drawing" width="200"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png" alt="drawing" width="50"/>
+<img src="https://miro.medium.com/max/1200/1*4br4WmxNo0jkcsY796jGDQ.jpeg" alt="drawing" width="200"/><p>Technically, the only changes involved for a NumPy end user: <code class="docutils literal notranslate"><span class="pre">np.</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">xp.</span></code>. Where <code class="docutils literal notranslate"><span class="pre">xp</span></code> represents any array/tensor implementation compliant with the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API</a>.</p>
+<p>We explain more about the motivation for making array libraries interoperable in this <a class="reference external" href="https://labs.quansight.org/blog/2021/09/array-libraries-interoperability/">blog</a>.</p>
+</div>
+</div>
+<div class="section" id="download-data-files">
+<h2>Download data files<a class="headerlink" href="#download-data-files" title="Permalink to this headline">¶</a></h2>
+<p>Download each of the following files into the directory where you would like to run the notebook.  Most of these data files are described at:</p>
+<p><a class="reference external" href="https://www.gw-openscience.org/events/GW150914/">https://www.gw-openscience.org/events/GW150914/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- Helper python module to open LIGO data files</span>
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/static/sample_code/readligo.py 
+    
+<span class="c1"># -- Download 4096 second data files around GW150914</span>
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/L-L1_LOSC_4_V2-1126257414-4096.hdf5
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/H-H1_LOSC_4_V2-1126257414-4096.hdf5
+    
+<span class="c1"># -- Download 32 second data files around GW150914</span>
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/H-H1_LOSC_4_V2-1126259446-32.hdf5
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/L-L1_LOSC_4_V2-1126259446-32.hdf5
+    
+<span class="c1"># -- Download waveform template</span>
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/P150914/fig2-unfiltered-waveform-H.txt
+    
+<span class="c1"># -- Download data from Figure 1 of GW150914 detection paper</span>
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/P150914/fig1-observed-H.txt
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/P150914/fig1-residual-H.txt
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/P150914/fig1-observed-L.txt
+<span class="o">!</span> wget -q -N https://www.gw-openscience.org/GW150914data/P150914/fig1-residual-L.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard python numerical analysis imports:</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># https://github.com/numpy/numpy/pull/18585/</span>
+<span class="c1"># import numpy.array_api as xp </span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>  <span class="c1"># Not compatible yet</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">butter</span><span class="p">,</span> <span class="n">filtfilt</span>  <span class="c1"># Not compatible yet</span>
+
+<span class="c1"># !pip install h5py</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># plotting items</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.mlab</span> <span class="k">as</span> <span class="nn">mlab</span>
+
+<span class="c1"># -- Set some parameters that control how plots are displayed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;lines.linewidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">.75</span>
+
+<span class="c1"># LIGO-specific readligo.py </span>
+<span class="c1"># Download from https://www.gw-openscience.org/static/sample_code/readligo.py</span>
+<span class="c1"># Note: This has been edited for the PyTorch demo with array-api available at,</span>
+<span class="c1">#       https://github.com/AnirudhDagar/array-api-demo/blob/master/readligo.py</span>
+<span class="kn">import</span> <span class="nn">readligo</span> <span class="k">as</span> <span class="nn">rl</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="array-api-demo-background">
+<h2>Array-API Demo Background<a class="headerlink" href="#array-api-demo-background" title="Permalink to this headline">¶</a></h2>
+<p>If you are not a maintainer/core dev at some array consumer library like <code class="docutils literal notranslate"><span class="pre">SciPy</span></code>, <code class="docutils literal notranslate"><span class="pre">EinOps</span></code> etc., <strong>feel free to skip this section</strong>. Through this section, we’d like to explain the very simple machinery and mechanics that goes behind making something like this possible.</p>
+<div class="section" id="array-namespace">
+<h3><a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/array_object.html#array-namespace-self-api-version-none"><code class="docutils literal notranslate"><span class="pre">__array_namespace__</span></code></a><a class="headerlink" href="#array-namespace" title="Permalink to this headline">¶</a></h3>
+<p>Let’s understand about the <a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/array_object.html#array-namespace-self-api-version-none"><code class="docutils literal notranslate"><span class="pre">__array_namespace__</span></code></a> protocol first. More details in <a class="reference external" href="https://numpy.org/neps/nep-0047-array-api-standard.html">NEP 47</a>. This is another magic method in python which can be attached to any tensor/array object to represent compliance for some specific Array API version. In the example below we specifically create a dummy <code class="docutils literal notranslate"><span class="pre">__array_namespace__</span></code> method and monkey-patch it to PyTorch’s <code class="docutils literal notranslate"><span class="pre">Tensor</span></code> class. Something like this is only for demonstration purposes and will not be needed in a future released version 1.11 for PyTorch.</p>
+<p>Note: This is needed since Array API in PyTorch is under development. See the progress: <a class="reference external" href="https://github.com/pytorch/pytorch/issues?q=is%3Aopen+is%3Aissue+label%3A%22module%3A+python+array+api%22">module python array api</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="k">def</span> <span class="nf">__array_namespace__</span><span class="p">(</span><span class="n">Array</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">api_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">api_version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unrecognized array API version&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">torch</span>
+    <span class="k">return</span> <span class="n">torch</span>
+
+<span class="c1"># Monkey-Patch the protocol to torch Tensor class</span>
+<span class="nb">setattr</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="s1">&#39;__array_namespace__&#39;</span><span class="p">,</span> <span class="n">__array_namespace__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-namespace">
+<h3><a class="reference external" href="https://numpy.org/neps/nep-0047-array-api-standard.html#appendix-a-possible-get-namespace-implementation"><code class="docutils literal notranslate"><span class="pre">get_namespace</span></code></a><a class="headerlink" href="#get-namespace" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">get_namespace</span></code> is the key method which will be required inside all the consumer libraries looking to support multiple array/tensor implementations. The idea is to check the passed array/tensor objects for the protocol compliance and accordingly make sure the same implementation is used going ahead by returning the array/tensor framework namespace represented in the form <code class="docutils literal notranslate"><span class="pre">xp</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_namespace</span><span class="p">(</span><span class="o">*</span><span class="n">xs</span><span class="p">):</span>
+    <span class="c1"># `xs` contains one or more arrays, or possibly Python scalars (accepting</span>
+    <span class="c1"># those is a matter of taste, but doesn&#39;t seem unreasonable).</span>
+    <span class="n">namespaces</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">__array_namespace__</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;__array_namespace__&#39;</span><span class="p">)</span>
+        <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">complex</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">namespaces</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unrecognized array input&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">namespaces</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multiple namespaces for array inputs: </span><span class="si">{</span><span class="n">namespaces</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">xp</span><span class="p">,</span> <span class="o">=</span> <span class="n">namespaces</span>
+    <span class="k">if</span> <span class="n">xp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The input is not a supported array type&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">xp</span> <span class="o">==</span> <span class="n">torch</span><span class="p">:</span>
+        <span class="c1"># Monkey-Patch functions (Currently under progress for PyTorch)</span>
+        <span class="n">xp</span><span class="o">.</span><span class="n">asarray</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span>
+        <span class="n">xp</span><span class="o">.</span><span class="n">pi</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+
+    <span class="k">return</span> <span class="n">xp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test array-api `get_namespace`</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">xp</span> <span class="o">=</span> <span class="n">get_namespace</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;torch&#39; from &#39;/Users/gollum/anaconda3/envs/scipy-dev/lib/python3.9/site-packages/torch/__init__.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>As seen above <code class="docutils literal notranslate"><span class="pre">get_namespace</span></code> works as expected. Before we dive deeper and move into the real deal, I warn you that this notebook works for a specific fork of SciPy right now and is just a prototype showing the ability to use PyTorch tensors with SciPy. It may not work for you with a release version of SciPy.</p>
+<p>If you really want to check the details of the changes made in SciPy to make this work, we encourage you to checkout and build the branch <a class="reference external" href="https://github.com/anirudhdagar/scipy/tree/array-api-demo">array-api-demo</a> locally. Some functions like <code class="docutils literal notranslate"><span class="pre">scipy.signal.welch</span></code> have been adapted in SciPy such that they can support multiple array/tensor  libraries. In this case PyTorch and Numpy. Feel free to explore more in <a class="reference external" href="https://github.com/AnirudhDagar/scipy/blob/array-api-demo/scipy/signal/spectral.py">spectral.py</a>.</p>
+<p>Let’s get started.</p>
+</div>
+</div>
+<div class="section" id="calculate-the-noise-power-spectral-density-psd">
+<h2>Calculate the noise power spectral density (PSD)<a class="headerlink" href="#calculate-the-noise-power-spectral-density-psd" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these 4096 second files are useful for computing more accurate psds</span>
+<span class="n">large_data_filenames</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;GW150914&#39;</span><span class="p">:</span> <span class="s1">&#39;LOSC_4_V2-1126257414-4096.hdf5&#39;</span><span class="p">}</span>
+<span class="n">fn_H1</span> <span class="o">=</span> <span class="s1">&#39;H-H1_&#39;</span> <span class="o">+</span> <span class="n">large_data_filenames</span><span class="p">[</span><span class="s1">&#39;GW150914&#39;</span><span class="p">]</span>
+<span class="n">fn_L1</span> <span class="o">=</span> <span class="s1">&#39;L-L1_&#39;</span> <span class="o">+</span> <span class="n">large_data_filenames</span><span class="p">[</span><span class="s1">&#39;GW150914&#39;</span><span class="p">]</span>
+
+<span class="c1"># this is the approximate event time which is used in the papers</span>
+<span class="n">time_center</span> <span class="o">=</span> <span class="mi">1126259462</span>
+
+<span class="c1"># get sample rate from the H1 data file</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdf_file</span><span class="p">:</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">asarray</span><span class="p">((</span><span class="n">hdf_file</span><span class="p">[</span><span class="s1">&#39;strain/Strain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Xspacing&#39;</span><span class="p">]))</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using sample rate of </span><span class="si">{0}</span><span class="s2"> Hz found in file: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="n">fn_H1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using sample rate of 4096 Hz found in file: H-H1_LOSC_4_V2-1126257414-4096.hdf5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_full_psds</span><span class="p">(</span><span class="n">eventnames</span><span class="p">,</span> <span class="n">large_data_filenames</span><span class="p">,</span>
+                  <span class="n">make_plots</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_others</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtains full 1024 second psds for all the events specified. Uses the Welch</span>
+<span class="sd">    average technique, along with other less accurate techniques if</span>
+<span class="sd">    specified. Can also plot the psd obtained.</span>
+<span class="sd">    </span>
+<span class="sd">    Args: </span>
+<span class="sd">        eventnames (list): list of events to get psds for</span>
+<span class="sd">        large_datafilenames (dict): dictionary whose keys are the eventnames </span>
+<span class="sd">            and whose values are the filenames of the large amounts of strain</span>
+<span class="sd">            data used, without the added &#39;H-&lt;det&gt;_&#39;</span>
+<span class="sd">        make_plots (bool, optional): if set to True, plot psd data</span>
+<span class="sd">        plot_others (bool, optional): if set to True, also obtain psd data </span>
+<span class="sd">            without averaging as well as with no window</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: A dictionary containing psds for each detector for each event </span>
+<span class="sd">            specified in eventnames.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">large_data_psds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">eventname</span> <span class="ow">in</span> <span class="n">eventnames</span><span class="p">:</span>
+        <span class="n">large_data_psds</span><span class="p">[</span><span class="n">eventname</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H1&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="c1"># get filename</span>
+        <span class="n">fn_H1</span> <span class="o">=</span> <span class="s1">&#39;H-H1_&#39;</span> <span class="o">+</span> <span class="n">large_data_filenames</span><span class="p">[</span><span class="n">eventname</span><span class="p">]</span>
+        <span class="n">fn_L1</span> <span class="o">=</span> <span class="s1">&#39;L-L1_&#39;</span> <span class="o">+</span> <span class="n">large_data_filenames</span><span class="p">[</span><span class="n">eventname</span><span class="p">]</span>
+
+        <span class="c1"># get strain data</span>
+        <span class="c1"># set the use_torch argument for loading data in pytorch tensors</span>
+        <span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">strain_L1</span><span class="p">,</span> <span class="n">time_L1</span><span class="p">,</span> <span class="n">chan_dict_L1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># validate the data loaded is actually as torch tensors</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Array/Tensor Implementation Used: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">strain_H1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">time_H1</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Array/Tensor Implementation Used: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">strain_L1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">time_L1</span><span class="p">))</span>
+
+        <span class="c1"># both H1 and L1 will have the same time vector, so:</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time_H1</span>
+
+        <span class="n">indxt_around</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">time_center</span> <span class="o">-</span> <span class="mi">512</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>
+            <span class="n">time</span> <span class="o">&lt;</span> <span class="n">time_center</span> <span class="o">+</span> <span class="mi">512</span><span class="p">))</span>
+        
+
+        <span class="c1"># number of sample for the fast fourier transform:</span>
+        <span class="n">NFFT</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">fs</span>           <span class="c1"># Use 4 seconds of data for each fourier transform</span>
+        <span class="n">NOVL</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">NFFT</span> <span class="o">/</span> <span class="mi">2</span>     <span class="c1"># The number of points of overlap between segments used in Welch averaging</span>
+        <span class="n">psd_window</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">tukey</span><span class="p">(</span><span class="n">NFFT</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+        <span class="n">freqs</span><span class="p">,</span> <span class="n">Pxx_H1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">strain_H1</span><span class="p">[</span><span class="n">indxt_around</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="n">NFFT</span><span class="p">,</span>
+                                 <span class="n">window</span><span class="o">=</span><span class="n">psd_window</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="n">NOVL</span><span class="p">)</span>
+        <span class="n">freqs</span><span class="p">,</span> <span class="n">Pxx_L1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">strain_L1</span><span class="p">[</span><span class="n">indxt_around</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="n">NFFT</span><span class="p">,</span> 
+                                <span class="n">window</span><span class="o">=</span><span class="n">psd_window</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="n">NOVL</span><span class="p">)</span>                
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">plot_others</span><span class="p">):</span>
+            <span class="c1"># smaller window if we&#39;re not doing Welch&#39;s method</span>
+            <span class="n">short_indxt_away</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">time_center</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>
+                <span class="n">time</span> <span class="o">&lt;</span> <span class="n">time_center</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+
+            <span class="n">tukey_freqs</span><span class="p">,</span> <span class="n">tukey_Pxx_H1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">strain_H1</span><span class="p">[</span><span class="n">short_indxt_away</span><span class="p">],</span>
+                                                           <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="n">NFFT</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">psd_window</span><span class="p">)</span>
+            
+            <span class="n">nowin_freqs</span><span class="p">,</span> <span class="n">nowin_Pxx_H1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">strain_H1</span><span class="p">[</span><span class="n">short_indxt_away</span><span class="p">],</span>
+                                                           <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="n">NFFT</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">xp</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">NFFT</span><span class="p">))</span>
+
+        <span class="c1"># We will use interpolations of the PSDs computed above for whitening:</span>
+        <span class="n">psd_H1</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">Pxx_H1</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        <span class="n">psd_L1</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">Pxx_L1</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        
+        <span class="n">large_data_psds</span><span class="p">[</span><span class="n">eventname</span><span class="p">][</span><span class="s1">&#39;H1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">psd_H1</span>
+        <span class="n">large_data_psds</span><span class="p">[</span><span class="n">eventname</span><span class="p">][</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">psd_L1</span>
+
+        <span class="k">if</span> <span class="n">make_plots</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+            <span class="c1"># scale x and y axes</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+            <span class="c1"># plot nowindow, tukey, welch together </span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nowin_freqs</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">nowin_Pxx_H1</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span> <span class="s1">&#39;No Window&#39;</span><span class="p">,</span>
+                     <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tukey_freqs</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">tukey_Pxx_H1</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tukey Window&#39;</span><span class="p">,</span>
+                     <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">Pxx_H1</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Welch Average&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+                     <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+
+            <span class="c1"># plot 1/f^2</span>
+            <span class="c1"># give it the right starting scale to fit with the rest of the plots</span>
+            <span class="c1"># don&#39;t include zero frequency</span>
+            <span class="n">inverse_square</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> 
+                                    <span class="n">nowin_freqs</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>
+            <span class="c1"># inverse starts at 1 to take out 1/0</span>
+            <span class="n">scale_index</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># chosen by eye to fit the plot</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="n">nowin_Pxx_H1</span><span class="p">[</span><span class="n">scale_index</span><span class="p">]</span>  <span class="o">/</span> <span class="n">inverse_square</span><span class="p">[</span><span class="n">scale_index</span><span class="p">]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nowin_freqs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">inverse_square</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">scale</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                     <span class="n">label</span><span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$1 / f^2$&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mf">1e-48</span><span class="p">,</span> <span class="mf">1e-41</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sn(t)&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Freq (Hz)&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LIGO PSD data near &#39;</span> <span class="o">+</span> <span class="n">eventname</span> <span class="o">+</span> <span class="s1">&#39; at H1&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">large_data_psds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eventnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GW150914&#39;</span><span class="p">]</span>
+<span class="n">large_data_psds</span> <span class="o">=</span> <span class="n">get_full_psds</span><span class="p">(</span><span class="n">eventnames</span><span class="p">,</span> <span class="n">large_data_filenames</span><span class="p">,</span>
+                                <span class="n">make_plots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_others</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array/Tensor Implementation Used:  &lt;class &#39;torch.Tensor&#39;&gt; &lt;class &#39;torch.Tensor&#39;&gt;
+Array/Tensor Implementation Used:  &lt;class &#39;torch.Tensor&#39;&gt; &lt;class &#39;torch.Tensor&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/GW_Demo_Array_API_15_1.png" src="_images/GW_Demo_Array_API_15_1.png" />
+</div>
+</div>
+<p>Note that inadequate windowing of these strongly colored data produces a psd that
+is entirely dominated by “spectral leakage”,
+<a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_leakage">https://en.wikipedia.org/wiki/Spectral_leakage</a>,
+and inadequate averaging leads to noise fluctuations that contaminate the estimated PSD.</p>
+</div>
+<div class="section" id="whiten-and-bandpass-functions">
+<h2>Whiten and Bandpass Functions<a class="headerlink" href="#whiten-and-bandpass-functions" title="Permalink to this headline">¶</a></h2>
+<p>Now we’ll create some helper functions to whiten and bandpass data within a
+given frequency band. These allow us to better see some signal in our data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">whiten</span><span class="p">(</span><span class="n">strain</span><span class="p">,</span> <span class="n">interp_psd</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">phase_shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_shift</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Whitens strain data given the psd and sample rate, also applying a phase</span>
+<span class="sd">    shift and time shift.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        strain (ndarray): strain data</span>
+<span class="sd">        interp_psd (interpolating function): function to take in freqs and output </span>
+<span class="sd">            the average power at that freq </span>
+<span class="sd">        dt (float): sample time interval of data</span>
+<span class="sd">        phase_shift (float, optional): phase shift to apply to whitened data</span>
+<span class="sd">        time_shift (float, optional): time shift to apply to whitened data (s)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray: array of whitened strain data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">strain</span><span class="p">)</span>
+    <span class="c1"># take the fourier transform of the data</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># whitening: transform to freq domain, divide by square root of psd, then</span>
+    <span class="c1"># transform back, taking care to get normalization right.</span>
+    <span class="n">hf</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">strain</span><span class="p">)</span>
+    
+    <span class="c1"># apply time and phase shift</span>
+    <span class="n">hf</span> <span class="o">=</span> <span class="n">hf</span> <span class="o">*</span> <span class="n">xp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="n">j</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xp</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">time_shift</span> <span class="o">*</span> <span class="n">freqs</span> <span class="o">-</span> <span class="mf">1.</span><span class="n">j</span> <span class="o">*</span> <span class="n">phase_shift</span><span class="p">)</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">xp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+    <span class="c1"># interp1d needs array api compatibility</span>
+    <span class="n">white_hf</span> <span class="o">=</span> <span class="n">hf</span> <span class="o">/</span> <span class="n">xp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">interp_psd</span><span class="p">(</span><span class="n">freqs</span><span class="p">)))</span> <span class="o">*</span> <span class="n">norm</span>
+    <span class="n">white_ht</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">white_hf</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">Nt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">white_ht</span>
+
+<span class="k">def</span> <span class="nf">bandpass</span><span class="p">(</span><span class="n">strain</span><span class="p">,</span> <span class="n">fband</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Bandpasses strain data using a butterworth filter.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        strain (ndarray): strain data to bandpass</span>
+<span class="sd">        fband (ndarray): low and high-pass filter values to use</span>
+<span class="sd">        fs (float): sample rate of data</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray: array of bandpassed strain data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Figure way to make butter compatible</span>
+    <span class="n">bb</span><span class="p">,</span> <span class="n">ab</span> <span class="o">=</span> <span class="n">butter</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="n">fband</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">2.</span><span class="o">/</span><span class="n">fs</span><span class="p">,</span> <span class="n">fband</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mf">2.</span><span class="o">/</span><span class="n">fs</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;band&#39;</span><span class="p">)</span>
+    <span class="n">normalization</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">fband</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">fband</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="c1"># TODO: Figure way to make filtfilt compatible</span>
+    <span class="n">strain_bp</span> <span class="o">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">ab</span><span class="p">,</span> <span class="n">strain</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span> <span class="o">/</span> <span class="n">normalization</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">strain_bp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note that some of the functions here are still not array api compatible. Eg. <code class="docutils literal notranslate"><span class="pre">butter</span></code>, <code class="docutils literal notranslate"><span class="pre">filtfilt</span></code> etc. These involve thousands of LOC and we decided it wasn’t worth refactoring for the purpose of this demo.</strong></p>
+<p>This also brings us to one major limitation of Array API, i.e. it is designed to work only for pure python implementations of a function. We can’t support multiple array/tensor implementations using the <code class="docutils literal notranslate"><span class="pre">__array_namespace__</span></code> protocol if the function itself is written in C, C++, Fortran, Cython etc which is not very rare for a library like SciPy.</p>
+<p>Other backend handling protocols like <code class="docutils literal notranslate"><span class="pre">uarray</span></code> could work better in such a case.</p>
+</div>
+<div class="section" id="plot-strain-data-that-has-been-windowed-bandpassed-and-whitened">
+<h2>Plot strain data that has been windowed, bandpassed, and whitened<a class="headerlink" href="#plot-strain-data-that-has-been-windowed-bandpassed-and-whitened" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_strain_data</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="n">fn_L1</span><span class="p">,</span> <span class="n">eventname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plots windowed, whitened, and bandpassed strain vs time near a given</span>
+<span class="sd">    event.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fn_H1: name of H1 data file</span>
+<span class="sd">        fn_L1: name of L1 data file</span>
+<span class="sd">        eventname: name of the event</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">fband</span> <span class="o">=</span> <span class="p">[</span><span class="mf">35.0</span><span class="p">,</span> <span class="mf">350.0</span><span class="p">]</span>
+
+    <span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">strain_L1</span><span class="p">,</span> <span class="n">time_L1</span><span class="p">,</span> <span class="n">chan_dict_L1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># both H1 and L1 will have the same time vector</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">time_H1</span>
+    
+    <span class="c1"># create our 4 second data window</span>
+    <span class="n">window_len</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">fs</span>
+    <span class="n">dwindow</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">tukey</span><span class="p">(</span><span class="n">window_len</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># plot original strain data</span>
+    <span class="c1"># only care about 4s around event</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">indxt</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">time_center</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">time</span> <span class="o">&lt;</span> <span class="n">time_center</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">indxt</span><span class="p">]</span> <span class="o">-</span> <span class="n">time_center</span><span class="p">,</span> <span class="n">strain_H1</span><span class="p">[</span><span class="n">indxt</span><span class="p">],</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hanford Data&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># plot windowed data</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">strain_windowed</span> <span class="o">=</span> <span class="n">dwindow</span> <span class="o">*</span> <span class="n">strain_H1</span><span class="p">[</span><span class="n">indxt</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">indxt</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_center</span><span class="p">,</span> <span class="n">strain_windowed</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Windowed Data&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    
+    
+    <span class="c1"># plot whitened data</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">strain_whitened</span> <span class="o">=</span> <span class="n">whiten</span><span class="p">(</span><span class="n">strain_windowed</span><span class="p">,</span> 
+                             <span class="n">large_data_psds</span><span class="p">[</span><span class="n">eventname</span><span class="p">][</span><span class="s1">&#39;H1&#39;</span><span class="p">],</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">indxt</span><span class="p">]</span> <span class="o">-</span> <span class="n">time_center</span><span class="p">,</span> <span class="n">strain_whitened</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Whitened Data&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># plot bandpassed data</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">strain_bp</span> <span class="o">=</span> <span class="n">bandpass</span><span class="p">(</span><span class="n">strain_whitened</span><span class="p">,</span> <span class="n">fband</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">indxt</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_center</span><span class="p">,</span> <span class="n">strain_bp</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bandpassed Data&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_strain_data</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;GW150914&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/GW_Demo_Array_API_22_0.png" src="_images/GW_Demo_Array_API_22_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="method-for-getting-whitened-banspassed-event-data">
+<h2>Method for getting whitened/banspassed event data<a class="headerlink" href="#method-for-getting-whitened-banspassed-event-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_strain_whitenbp_data</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="n">fn_L1</span><span class="p">,</span> <span class="n">fband</span><span class="p">,</span> <span class="n">eventname</span><span class="p">):</span>
+    
+    <span class="c1"># get strain data</span>
+    <span class="n">strain_H1</span><span class="p">,</span> <span class="n">time_H1</span><span class="p">,</span> <span class="n">chan_dict_H1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_H1</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">strain_L1</span><span class="p">,</span> <span class="n">time_L1</span><span class="p">,</span> <span class="n">chan_dict_L1</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">loaddata</span><span class="p">(</span><span class="n">fn_L1</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># both H1 and L1 will have the same time vector, so:</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">time_H1</span>
+
+    <span class="c1"># whiten, bandpass the data</span>
+    <span class="n">strain_H1_whiten</span> <span class="o">=</span> <span class="n">whiten</span><span class="p">(</span><span class="n">strain_H1</span><span class="p">,</span> <span class="n">large_data_psds</span><span class="p">[</span><span class="n">eventname</span><span class="p">][</span><span class="s1">&#39;H1&#39;</span><span class="p">],</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">strain_L1_whiten</span> <span class="o">=</span> <span class="n">whiten</span><span class="p">(</span><span class="n">strain_L1</span><span class="p">,</span> <span class="n">large_data_psds</span><span class="p">[</span><span class="n">eventname</span><span class="p">][</span><span class="s1">&#39;L1&#39;</span><span class="p">],</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="n">strain_H1_whitenbp</span> <span class="o">=</span> <span class="n">bandpass</span><span class="p">(</span><span class="n">strain_H1_whiten</span><span class="p">,</span> <span class="n">fband</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">strain_L1_whitenbp</span> <span class="o">=</span> <span class="n">bandpass</span><span class="p">(</span><span class="n">strain_L1_whiten</span><span class="p">,</span> <span class="n">fband</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    
+    <span class="c1"># return results as a dictionary for more intuitive access</span>
+    <span class="n">total_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;strain&#39;</span><span class="p">:</span> <span class="n">strain_H1</span><span class="p">,</span> <span class="s1">&#39;strain_whiten&#39;</span><span class="p">:</span> <span class="n">strain_H1_whiten</span><span class="p">,</span>
+                         <span class="s1">&#39;strain_whitenbp&#39;</span><span class="p">:</span> <span class="n">strain_H1_whitenbp</span><span class="p">},</span> <span class="s1">&#39;L1&#39;</span><span class="p">:</span> 
+                  <span class="p">{</span><span class="s1">&#39;strain&#39;</span><span class="p">:</span> <span class="n">strain_L1</span><span class="p">,</span> <span class="s1">&#39;strain_whiten&#39;</span><span class="p">:</span> <span class="n">strain_L1_whiten</span><span class="p">,</span> 
+                   <span class="s1">&#39;strain_whitenbp&#39;</span><span class="p">:</span> <span class="n">strain_L1_whitenbp</span><span class="p">},</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span> <span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="n">dt</span><span class="p">}</span>
+                   
+    <span class="k">return</span> <span class="n">total_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn_H1_32</span> <span class="o">=</span> <span class="s1">&#39;H-H1_LOSC_4_V2-1126259446-32.hdf5&#39;</span>
+<span class="n">fn_L1_32</span> <span class="o">=</span> <span class="s1">&#39;L-L1_LOSC_4_V2-1126259446-32.hdf5&#39;</span>
+<span class="n">total_GW150914_data</span> <span class="o">=</span> <span class="n">get_strain_whitenbp_data</span><span class="p">(</span><span class="n">fn_H1_32</span><span class="p">,</span> <span class="n">fn_L1_32</span><span class="p">,</span> <span class="p">[</span><span class="mf">35.</span><span class="p">,</span> <span class="mf">350.</span><span class="p">],</span> <span class="s1">&#39;GW150914&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fourier_phases</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span> 
+    <span class="sd">&quot;&quot;&quot;Plots Fourier phases of strain data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (ndarray): strain data</span>
+<span class="sd">        time (ndarray): time corresponding to data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># do this both with and without a spectral window</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">tukey_window</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">tukey</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">numel</span><span class="p">(),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">use_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tukey window&#39;</span><span class="p">,</span> <span class="s1">&#39;No window&#39;</span><span class="p">]</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># apply each window and find phases of the fft</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dwindow</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">tukey_window</span><span class="p">,</span> <span class="mi">1</span><span class="p">]):</span>
+        <span class="n">data_fft</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">((</span><span class="n">data</span> <span class="o">*</span> <span class="n">dwindow</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">datafreq</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">numel</span><span class="p">())</span> <span class="o">/</span> <span class="n">dt</span>
+        <span class="n">phases</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data_fft</span><span class="p">)</span>
+        <span class="c1"># convert angles to range (0, 2 pi)</span>
+        <span class="n">phases</span> <span class="o">=</span> <span class="p">(</span><span class="n">phases</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xp</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">xp</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">datafreq</span><span class="p">,</span> <span class="n">phases</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                 <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">400</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;f(Hz)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phase&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indxt</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">total_GW150914_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">time_center</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>
+    <span class="n">total_GW150914_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">time_center</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plot_fourier_phases</span><span class="p">(</span><span class="n">total_GW150914_data</span><span class="p">[</span><span class="s1">&#39;H1&#39;</span><span class="p">][</span><span class="s1">&#39;strain&#39;</span><span class="p">][</span><span class="n">indxt</span><span class="p">],</span>
+                    <span class="n">total_GW150914_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][</span><span class="n">indxt</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/GW_Demo_Array_API_27_0.png" src="_images/GW_Demo_Array_API_27_0.png" />
+</div>
+</div>
+<p>Note that the fourier phases for properly windowed data (random noise) are random between [0, 2*pi];
+by contrast, un-windowed data produce strongly correlated fourier phases that are artifacts of the abrupt beginning and end of the data stretch.</p>
+</div>
+<div class="section" id="summary-array-api">
+<h2>Summary Array API<a class="headerlink" href="#summary-array-api" title="Permalink to this headline">¶</a></h2>
+<p>As seen from the analysis plots above, we try to use PyTorch tensors with an array consuming library like SciPy which was initially built only keeping NumPy in mind. With the simple Python Array API tweaks we were able to do that. This simply means that any project which is written in pure python and consumes an array api compliant framework, would be able to easily support multiple kinds of array/tensors with their modules.</p>
+<p>This also means that switching an implementation should be extremely easy for an end user since the code will be untouched. We’ve replaced everything with an <code class="docutils literal notranslate"><span class="pre">xp</span></code> namespace that in theory might represent any array/tensor implementation the user wants.</p>
+<p>Obviously not everything is rainbows and sunshine there are a few places where Array API is limited with it’s power. Neither does it aim, nor it will ever handle compiled code. The only suggestion made by array api is to follow a standard and with that little change we were to able to make a lot of interesting in roads in the very interesting direction of Array Libraries Interoperability.</p>
+<p>Also we cannot change the way matplotlib generates the plots. One will still need to convert their arrays/tensors to NumPy ndarray before fetching the plotting data into matplotlib.</p>
+<p>Through this prototype demo we show how modules like <code class="docutils literal notranslate"><span class="pre">scipy.signal</span></code> can be changed and updated to support Array API. Functions like <code class="docutils literal notranslate"><span class="pre">scipy.signal.welch</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy.signal.csd</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy.signal.tukey</span></code> etc. showcase the power of the Python Array API standard.</p>
+<p>The spec is still under development and a big team is working towards its success. This demo and prototype will become more solid as we move towards the first spec release of the standard (expected end of 2021). Till then I hope the demo is comprehensive enough for people to understand one of the goals/use-cases and how they will be achieved with <a class="reference external" href="https://data-apis.org/array-api/latest/">Python Array API</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Array Libraries Interoperability</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Quansight Labs<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
