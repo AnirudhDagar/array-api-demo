@@ -1,11 +1,8 @@
-## Notebook for data guide paper
+## Array API Demo
 
-This notebook reproduces key plots in the data guide paper (https://arxiv.org/abs/1908.11170) in python. The Jupyter Notebook focuses on gravitational wave event GW150914, and covers issues such as windowing and Fourier transforms, power spectral estimation, maximizing the likelihood for numerical relativity templates and exploring correlations in the data and residuals.  For code used to
-produce published figures, see https://github.com/gw-odw/Data-Guide-Paper
+This notebook reproduces key plots in the data guide paper (https://arxiv.org/abs/1908.11170) in python. The demo focuses on gravitational wave event GW150914, and covers issues such as windowing and Fourier transforms, power spectral estimation, maximizing the likelihood for numerical relativity templates and exploring correlations in the data and residuals.  For code used to
+produce published figures, see https://github.com/gw-odw/Data-Guide-Paper. This demo is inspired and built on top of https://github.com/losc-tutorial/Data_Guide. We would like to extend credits to the original implementation. We use the https://jupyterbook.org/ to build the executable notebooks.
 
-This demo is inspired and built on top of https://github.com/losc-tutorial/Data_Guide. We would like to extend credits to the original implementation. We use the https://jupyterbook.org/ to build the executable notebooks.
-
-
-### Array API Demo
+The main idea behind this demo is to showcase the use of PyTorch Tensors with SciPy modules. This is possible with [NEP 47](https://numpy.org/neps/nep-0047-array-api-standard.html) or [Array API](https://data-apis.org/array-api/latest/).
 
 Please use [this](https://github.com/AnirudhDagar/scipy/tree/array-api-demo) SciPy branch for this demo.
