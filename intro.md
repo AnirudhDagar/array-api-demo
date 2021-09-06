@@ -20,4 +20,4 @@ b = xp.ones(3)
 c = a + b
 ```
 
-Check out the content pages bundled with this sample book to see the real use case with a library like [SciPy](https://github.com/scipy/scipy).
+Check out the Array API Prototype Demo page bundled with this book to see the real use case with a library like [SciPy](https://github.com/scipy/scipy).

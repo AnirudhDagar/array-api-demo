@@ -1,4 +1,6 @@
-numpy
-scipy
+jupyter-book
 matplotlib
+numpy
+torch
+scipy
 h5py
