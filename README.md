@@ -8,6 +8,6 @@ Click a badge to run the notebook:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb)
 
 
-## Array API Demo
+### Array API Demo
 
 Please use [this](https://github.com/AnirudhDagar/scipy/tree/array-api-demo) SciPy branch for this demo.
