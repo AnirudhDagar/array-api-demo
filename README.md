@@ -7,3 +7,7 @@ Click a badge to run the notebook:
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/losc-tutorial/Data_Guide/master?filepath=Guide_Notebook.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb)
 
+
+## Array API Demo
+
+Please use [this](https://github.com/AnirudhDagar/scipy/tree/array-api-demo) SciPy branch for this demo.
