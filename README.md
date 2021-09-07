@@ -6,3 +6,18 @@ produce published figures, see https://github.com/gw-odw/Data-Guide-Paper. This 
 The main idea behind this demo is to showcase the use of PyTorch Tensors with SciPy modules. This is possible with [NEP 47](https://numpy.org/neps/nep-0047-array-api-standard.html) or [Array API](https://data-apis.org/array-api/latest/).
 
 Please use [this](https://github.com/AnirudhDagar/scipy/tree/array-api-demo) SciPy branch for this demo.
+
+### Build & Deploy Instructions
+
+First build the jupyter book html files using the following command. This will execute all the markdown and ipynb files and create a `_build/html` dir with the website built.
+```bash
+jupyter-book build .
+```
+
+Branch `gh-pages` holds the deployed website. To update the deployment, use `ghp-import`. Inside the repo, run the following to update the deployed website with the current build.
+```
+ghp-import -n -p -f _build/html
+```
+
+For more information, please refer to https://jupyterbook.org/start/your-first-book.html.
+
