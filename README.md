@@ -21,3 +21,6 @@ ghp-import -n -p -f _build/html
 
 For more information, please refer to https://jupyterbook.org/start/your-first-book.html.
 
+## Acknowledgement
+
+Work done during the development of this demo was generously supported by [Quansight Labs](https://labs.quansight.org/). 
