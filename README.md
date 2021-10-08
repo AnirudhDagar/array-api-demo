@@ -1,5 +1,7 @@
 ## Array API Demo
 
+**UPDATE: This repo has been moved to [quansight-labs/array-api-demo](https://github.com/quansight-labs/array-api-demo), please watch that for latest updates. We no longer maintain this repo.**
+
 This notebook reproduces key plots in the data guide paper (https://arxiv.org/abs/1908.11170) in python. The demo focuses on gravitational wave event GW150914, and covers issues such as windowing and Fourier transforms, power spectral estimation, maximizing the likelihood for numerical relativity templates and exploring correlations in the data and residuals.  For code used to
 produce published figures, see https://github.com/gw-odw/Data-Guide-Paper. This demo is inspired and built on top of https://github.com/losc-tutorial/Data_Guide. We would like to extend credits to the original implementation. We use the https://jupyterbook.org/ to build the executable notebooks.
 
